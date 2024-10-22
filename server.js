@@ -41,7 +41,7 @@ app
   // routing
 app.use('/', require('./routes'));
 
-// catch all errors
+// error handler for all errors
 process.on('uncaughtException', (err, origin) => {
     console.log(process.stderr.fd, 'Caught exception: ${err}\n' + 'Exception onrigin: ${origin}');
   })

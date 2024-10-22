@@ -11,7 +11,7 @@ router.get('/', homepageController.homepageRoute);
 // router: users
 router.use('/users', require('./users'));
 // router: tasks
-//router.use('/tasks', require('./tasks'));
+router.use('/tasks', require('./tasks'));
 
 // login using github Oauth
 router.get('/login', passport.authenticate('github'), (req, res) => {});
