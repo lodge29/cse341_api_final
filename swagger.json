@@ -23,18 +23,21 @@
     },
     "/users/": {
       "get": {
-        "description": "",
+        "description": "Get all users",
         "produces": [
           "application/json"
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
       "post": {
-        "description": "",
+        "description": "Create a new user",
         "parameters": [
           {
             "name": "body",
@@ -61,6 +64,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "422": {
             "description": "Unprocessable Entity"
@@ -70,7 +76,7 @@
     },
     "/users/{id}": {
       "get": {
-        "description": "",
+        "description": "Get a single user using a valid database _id",
         "produces": [
           "application/json"
         ],
@@ -85,11 +91,14 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update a single user by _id",
         "parameters": [
           {
             "name": "id",
@@ -123,13 +132,16 @@
           "204": {
             "description": "No Content"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "422": {
             "description": "Unprocessable Entity"
           }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a single user by _id",
         "parameters": [
           {
             "name": "id",
@@ -141,24 +153,27 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
     },
     "/tasks/": {
       "get": {
-        "description": "",
+        "description": "Get all tasks",
         "produces": [
           "application/json"
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           }
         }
       },
       "post": {
-        "description": "",
+        "description": "Create a new task with a valid tag. Follow validation rules.",
         "parameters": [
           {
             "name": "body",
@@ -168,6 +183,9 @@
               "properties": {
                 "task": {
                   "example": "any"
+                },
+                "tag": {
+                  "example": "any"
                 }
               }
             }
@@ -176,13 +194,19 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
         }
       }
     },
     "/tasks/{id}": {
       "get": {
-        "description": "",
+        "description": "Get a single task by _id",
         "produces": [
           "application/json"
         ],
@@ -195,13 +219,13 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
           }
         }
       },
       "put": {
-        "description": "",
+        "description": "Update a single task by _id",
         "parameters": [
           {
             "name": "id",
@@ -217,6 +241,9 @@
               "properties": {
                 "task": {
                   "example": "any"
+                },
+                "tag": {
+                  "example": "any"
                 }
               }
             }
@@ -225,11 +252,17 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           }
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a single task by _id",
         "parameters": [
           {
             "name": "id",
@@ -241,6 +274,210 @@
         "responses": {
           "204": {
             "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/tags/": {
+      "get": {
+        "description": "Get all tags",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "Create a single tag.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tag": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      }
+    },
+    "/tags/{id}": {
+      "get": {
+        "description": "Get a single tag by _id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "Update a single tag by _id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tag": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a single tag by _id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/tasktag/": {
+      "get": {
+        "description": "Get all tasktags available. Each tag name will display each task associated with it.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/tasktag/{id}": {
+      "get": {
+        "description": "Get a single tasktag by _id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a single tasktag by _id that was created",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tasktag/{tagName}": {
+      "post": {
+        "description": "This one's different. Enter a 'tag name' to create a new record of tasks created prior to this.",
+        "parameters": [
+          {
+            "name": "tagName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

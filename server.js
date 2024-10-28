@@ -38,6 +38,37 @@ app
   .use(cors({ origin: '*'}))
   .use("/", require("./routes/index.js"));
 
+  passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL
+  },
+function(accessToken, refreshToken, profile, done) {
+  //User.findOrCreate({ githubid: profile.id }, function (err, user) {
+  return done(null, profile)
+//})
+}
+));
+
+// passport serilize
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+// passport deserialize
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
+app.get('/', (req, res) => {res.send(req.session.user !== undefined ? 'Logged in as ${req.session.user.displayName}' : "Logged Out")});
+
+// github callback
+app.get('/github/callback', passport.authenticate('github', {
+failureRedirect: '/api-docs', session: false}),
+(req, res) => {
+  req.session.user = req.user;
+  res.redirect('/');
+});
+
   // routing
 app.use('/', require('./routes'));
 

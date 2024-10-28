@@ -23,7 +23,8 @@ const getSingleTask = async (req, res) => {
 // create single user
 const createSingleTask = async (req, res) => {
     const tasks = {
-        task: req.body.task
+        task: req.body.task,
+        tag: req.body.tag
     };
     const response = await mongodb.getDatabase().db().collection('tasks').insertOne(tasks);
     if (response.acknowledged) {
@@ -37,7 +38,8 @@ const createSingleTask = async (req, res) => {
 const updateSingleTask = async (req, res) => {
     const taskId = new ObjectId(req.params.id);
     const tasks = {
-        task: req.body.task
+        task: req.body.task,
+        tag: req.body.tag
     };
     const response = await mongodb.getDatabase().db().collection('tasks').replaceOne({_id: taskId}, tasks);
     if (response.modifiedCount > 0) {

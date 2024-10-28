@@ -12,6 +12,10 @@ router.get('/', homepageController.homepageRoute);
 router.use('/users', require('./users'));
 // router: tasks
 router.use('/tasks', require('./tasks'));
+// router: tags
+router.use('/tags', require('./tags'));
+// router: tasktag ( single tag associated with each task)
+router.use('/tasktag', require('./tasktag'));
 
 // login using github Oauth
 router.get('/login', passport.authenticate('github'), (req, res) => {});

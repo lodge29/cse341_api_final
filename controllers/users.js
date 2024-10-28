@@ -3,22 +3,36 @@ const { ObjectId } = require('mongodb');
 
 // get all users
 const getAllUsers = async (req, res) => {
-    const result = await mongodb.getDatabase().db().collection('users').find();
-    result.toArray().then((users) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users);
-    });
+    try {
+        const result = await mongodb.getDatabase().db().collection('users').find().toArray();
+        if (result.length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(result);
+        } else {
+            res.status(404).json({ message: 'No users found' });
+        }
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.statuse(500).json(result.error || 'Server error');
+    }
 };
+  
 
 // get single user
 const getSingleUser = async (req, res) => {
     const userId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection('users').find({ _id: userId });
-    result.toArray().then((users) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users);
-    });
-};
+    const result = await mongodb.getDatabase().db().collection('users').find({ _id: userId }).toArray();
+    try {
+        if (result.length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(result);
+        } else {
+            res.status(404).json({ message: 'No user found' });
+        }
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.statuse(500).json(result.error || 'Server error');
+    }};
 
 // create single user
 const createSingleUser = async (req, res) => {
