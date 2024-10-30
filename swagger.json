@@ -11,19 +11,9 @@
     "https"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/users/": {
       "get": {
-        "description": "Get all users",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -37,7 +27,7 @@
         }
       },
       "post": {
-        "description": "Create a new user",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -55,6 +45,15 @@
                   "example": "any"
                 },
                 "birthday": {
+                  "example": "any"
+                },
+                "height": {
+                  "example": "any"
+                },
+                "weight": {
+                  "example": "any"
+                },
+                "onerepmax": {
                   "example": "any"
                 }
               }
@@ -76,7 +75,7 @@
     },
     "/users/{id}": {
       "get": {
-        "description": "Get a single user using a valid database _id",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -98,7 +97,7 @@
         }
       },
       "put": {
-        "description": "Update a single user by _id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -123,6 +122,15 @@
                 },
                 "birthday": {
                   "example": "any"
+                },
+                "height": {
+                  "example": "any"
+                },
+                "weight": {
+                  "example": "any"
+                },
+                "onerepmax": {
+                  "example": "any"
                 }
               }
             }
@@ -141,7 +149,7 @@
         }
       },
       "delete": {
-        "description": "Delete a single user by _id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -162,7 +170,7 @@
     },
     "/tasks/": {
       "get": {
-        "description": "Get all tasks",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -173,7 +181,7 @@
         }
       },
       "post": {
-        "description": "Create a new task with a valid tag. Follow validation rules.",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -206,7 +214,7 @@
     },
     "/tasks/{id}": {
       "get": {
-        "description": "Get a single task by _id",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -225,7 +233,7 @@
         }
       },
       "put": {
-        "description": "Update a single task by _id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -262,7 +270,7 @@
         }
       },
       "delete": {
-        "description": "Delete a single task by _id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -283,7 +291,7 @@
     },
     "/tags/": {
       "get": {
-        "description": "Get all tags",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -294,7 +302,7 @@
         }
       },
       "post": {
-        "description": "Create a single tag.",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -324,7 +332,7 @@
     },
     "/tags/{id}": {
       "get": {
-        "description": "Get a single tag by _id",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -343,7 +351,7 @@
         }
       },
       "put": {
-        "description": "Update a single tag by _id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -377,7 +385,7 @@
         }
       },
       "delete": {
-        "description": "Delete a single tag by _id",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -398,7 +406,7 @@
     },
     "/tasktag/": {
       "get": {
-        "description": "Get all tasktags available. Each tag name will display each task associated with it.",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -411,7 +419,7 @@
     },
     "/tasktag/{id}": {
       "get": {
-        "description": "Get a single tasktag by _id",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -433,7 +441,7 @@
         }
       },
       "delete": {
-        "description": "Delete a single tasktag by _id that was created",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -457,7 +465,7 @@
     },
     "/tasktag/{tagName}": {
       "post": {
-        "description": "This one's different. Enter a 'tag name' to create a new record of tasks created prior to this.",
+        "description": "",
         "parameters": [
           {
             "name": "tagName",

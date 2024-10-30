@@ -40,7 +40,10 @@ const createSingleUser = async (req, res) => {
         name: req.body.name,
         age: req.body.age,
         email: req.body.email,
-        birthday: req.body.birthday
+        birthday: req.body.birthday,
+        height: req.body.height,
+        weight: req.body.weight,
+        onerepmax: req.body.onerepmax
     };
     const response = await mongodb.getDatabase().db().collection('users').insertOne(user);
     if (response.acknowledged) {
@@ -57,7 +60,11 @@ const updateSingleUser = async (req, res) => {
         name: req.body.name,
         age: req.body.age,
         email: req.body.email,
-        birthday: req.body.birthday
+        birthday: req.body.birthday,
+        height: req.body.height,
+        weight: req.body.weight,
+        onerepmax: req.body.onerepmax
+
     };
     const response = await mongodb.getDatabase().db().collection('users').replaceOne({_id: userId}, user);
     if (response.modifiedCount > 0) {

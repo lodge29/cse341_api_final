@@ -31,6 +31,21 @@ const userValidationRules = () => {
     .trim()
     .escape()
     .notEmpty().withMessage("Enter valid birthday"),
+    body('height')
+    .trim()
+    .escape()
+    .notEmpty().withMessage("Enter valid height")
+    .isInt().withMessage("Must be a number!"),
+    body('weight')
+    .trim()
+    .escape()
+    .notEmpty().withMessage("Enter valid weight")
+    .isInt().withMessage("Must be a number!"),
+    body('onerepmax')
+    .trim()
+    .escape()
+    .notEmpty()
+    .isString().withMessage("Enter valid onerepmax"),
   ]
 }
 
